@@ -21,3 +21,41 @@ frm.set_query("name_of_your_field", function() {
 });
 
 ```
+
+### New Doc Button
+```
+frm.add_custom_button(__('New Doc'), () => {
+	frappe.new_doc("<Doctype>");
+}, "fa fa-plus", "btn-default","new_requisition");
+```
+
+### Page Buttons 
+```
+// simple button
+this.page.add_button(__("Set Chart"), () => {
+	this.open_create_chart_dialog();
+});
+
+// like select field
+const views_menu = this.page.add_custom_button_group(__('Other Reports'));
+
+this.page.add_custom_menu_item(views_menu, __("Leave Balance Summary"), function() {
+	frappe.set_route('query-report', 'Employee Leave Balance Summary Report');
+});
+
+this.page.add_custom_menu_item(views_menu, __("Leave Application Delay"), function() {
+	frappe.set_route('query-report', 'Leave Application Delay Report');
+});
+
+this.page.add_action_icon("refresh", () => {
+	this.fetch_and_render(true);
+}, "Refresh");
+
+this.page.add_menu_item("New Leave Application", () => {
+frappe.new_doc('Leave Application');
+});
+
+this.page.add_menu_item("Export", () => {
+this.export_excel()
+})
+```
