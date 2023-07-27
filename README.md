@@ -28,6 +28,35 @@ frm.add_custom_button(__('New Doc'), () => {
 	frappe.new_doc("<Doctype>");
 }, "fa fa-plus", "btn-default","new_requisition");
 ```
+### Query on Script Report Filters
+```
+{
+	"fieldname":"employee",
+	"label": __("Employee"),
+	"fieldtype": "Link",
+	"options": "Employee",
+	get_query: () => {
+		var company = frappe.query_report.get_filter_value('company');
+		return {
+			filters: {
+				'company': company
+			}
+		};
+	}
+}
+
+// or add
+get_query: () => {
+	let company = frappe.query_report.get_filter_value("company");
+	return {
+		filters: {
+			...company && {company}
+		}
+	}
+}
+
+
+```
 
 ### Page Buttons 
 ```
