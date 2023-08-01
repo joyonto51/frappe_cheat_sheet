@@ -1,0 +1,12 @@
+## Export by using Fixtures
+##### hooks.py
+```
+fixtures = [
+    "Workflow State",
+    "Workflow",
+    "Workflow Action Master"
+]
+
+```
+### Export Command
+ $```bench export-fixtures --app <app_name>```
